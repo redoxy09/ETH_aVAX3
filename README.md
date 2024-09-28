@@ -44,3 +44,28 @@ To deploy the MToken contract, you can use Remix, an online Solidity IDE. Follow
            _burn(msg.sender, amount);
        }
    }
+## Compiling the Code
+
+1. Click on the "Solidity Compiler" tab in the left-hand sidebar.
+2. Ensure the "Compiler" option is set to "0.8.4" (or a compatible version).
+3. Click on the "Compile MToken.sol" button.
+
+## Deploying the Contract
+
+1. Navigate to the "Deploy & Run Transactions" tab.
+2. Select the MToken contract from the dropdown menu.
+3. Enter the desired name and symbol for your token in the deployment inputs.
+4. Click on the "Deploy" button.
+
+## Interacting with the Contract
+
+After deploying the contract, you can use the following functions:
+
+- **Mint Tokens**: The owner can mint new tokens using the `mint(address to, uint256 amount)` function.
+- **Burn Tokens**: Any user can burn their tokens by calling the `burn(uint256 amount)` function.
+- **Transfer Tokens**: Users can transfer tokens to others using the standard `transfer(address recipient, uint256 amount)` function.
+
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE.md file for details.
