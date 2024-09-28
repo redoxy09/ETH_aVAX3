@@ -1,22 +1,46 @@
-# MToken ERC20 based token for Metacrafter ETH + AVAX Module 3
+# MToken - ERC20 Token for Metacrafter ETH + AVAX Module 3
 
-The **MToken** smart contract is an ERC-20 token implementation. It allows for the creation of a custom token with the following features:
+The **MToken** smart contract is an implementation of the ERC-20 standard, enabling the creation and management of a custom token with essential features. This contract serves as a versatile tool for developers looking to issue tokens on the Ethereum and Avalanche networks.
 
-1. **Name and Symbol**: The token has a user-defined name and symbol.
-2. **Initial Supply**: The contract creator (owner) is initially allocated 10 tokens.
-3. **Minting**: The owner can mint additional tokens and allocate them to any address.
-4. **Burning**: Any address can burn (destroy) their own tokens.
-5. **Transfer**: Anyone can transfer his/her token holding.
+## Description
 
-## Usage
+MToken provides a robust framework for creating and managing an ERC-20 token, complete with functionalities such as minting, burning, and transferring tokens. With an initial supply allocated to the contract owner, the MToken contract empowers users to interact with their tokens seamlessly.
 
-1. Deploy the contract, specifying the desired name and symbol.
-2. The owner can mint new tokens using the `mint` function.
-3. Users can transfer tokens.
-4. To burn tokens, call the `burn` function.
+### Features
 
-## Functions
+1. **Name and Symbol**: Customizable name and symbol for your token.
+2. **Initial Supply**: The contract owner starts with 10 tokens.
+3. **Minting**: The owner can mint new tokens and allocate them to any address.
+4. **Burning**: Users can burn their tokens, reducing the total supply.
+5. **Transfer**: Users can easily transfer their token holdings.
 
-- `mint(address to, uint256 amount)`: Mint new tokens and allocate them to the specified address. Only the owner can call this function.
-- `burn(uint256 amount)`: Burn (destroy) a specified amount of tokens from the caller's balance.
-- `transfer(address reciever, uint amount)`: Any user can call this and transfer their token with others.
+## Getting Started
+
+### Executing the Program
+
+To deploy the MToken contract, you can use Remix, an online Solidity IDE. Follow these steps:
+
+1. Go to the Remix website: [https://remix.ethereum.org/](https://remix.ethereum.org/).
+2. Create a new file by clicking on the "+" icon in the left-hand sidebar. Save it with a `.sol` extension (e.g., `MToken.sol`).
+3. Copy and paste the following code into the file:
+
+   ```solidity
+   // SPDX-License-Identifier: MIT
+   pragma solidity ^0.8.4;
+
+   import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+   import "@openzeppelin/contracts/access/Ownable.sol";
+
+   contract MToken is ERC20, Ownable {
+       constructor(string memory name, string memory symbol) ERC20(name, symbol) {
+           _mint(msg.sender, 10 * 10 ** decimals()); // Initial supply of 10 tokens
+       }
+
+       function mint(address to, uint256 amount) public onlyOwner {
+           _mint(to, amount);
+       }
+
+       function burn(uint256 amount) public {
+           _burn(msg.sender, amount);
+       }
+   }
