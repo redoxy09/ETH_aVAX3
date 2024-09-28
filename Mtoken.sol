@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract MToken is ERC20 {
     address public owner;
@@ -24,7 +24,7 @@ contract MToken is ERC20 {
         _burn(msg.sender, amount);
     }
 
-    function transfer(address reciever, uint256 amount) public override returns (bool) {
-        return super.transfer(reciever, amount);
+    function transfer(address receiver, uint256 amount) public override returns (bool) {
+        return super.transfer(receiver, amount);
     }
 }
